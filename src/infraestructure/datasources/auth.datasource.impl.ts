@@ -5,7 +5,7 @@ import {
     customError,
 } from '../../domain/'
 
-export class AuthDatasourceImpl extends AuthDatasource {
+export class AuthDatasourceImpl implements AuthDatasource {
     login(): Promise<UserEntity> {
         throw new Error('Method not implemented.')
     }
