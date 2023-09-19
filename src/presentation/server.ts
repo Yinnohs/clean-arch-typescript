@@ -1,4 +1,4 @@
-import express, { Request, Response, Router, json } from 'express'
+import express, { Request, Response, Router, json, urlencoded } from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 import helmet from 'helmet'
@@ -21,7 +21,8 @@ export class Server {
     public async start() {
         this.app.use(helmet())
         this.app.use(cors({ origin: '*' }))
-        this.app.use(json())
+        this.app.use(json()) // json
+        this.app.use(urlencoded({ extended: true })) // url encoded
         this.app.use(morgan('short'))
 
         this.app.use('/hc', (req: Request, res: Response) => {
