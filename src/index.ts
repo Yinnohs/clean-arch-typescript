@@ -1,4 +1,4 @@
-import { GlobalConfiguration } from './globalConfiguration'
+import { GlobalConfiguration } from './config'
 import { Server, ServerOptions } from './presentation/server'
 
 async function startApplication() {
