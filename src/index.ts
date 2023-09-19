@@ -1,5 +1,16 @@
-import { startServer } from './app'
+import { GlobalConfiguration } from './globalConfiguration'
+import { Server, ServerOptions } from './presentation/server'
 
-const SERVER_PORT: number = parseInt('' + process.env.SERVER_PORT, 10) || 5005
+async function startApplication() {
+    const globalConfig = new GlobalConfiguration()
 
-startServer(SERVER_PORT)
+    const options: ServerOptions = {
+        port: globalConfig.serverPort,
+    }
+
+    const server = new Server(options)
+
+    await server.start()
+}
+
+startApplication()

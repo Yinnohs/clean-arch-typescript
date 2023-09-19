@@ -3,12 +3,19 @@ import cors from 'cors'
 import morgan from 'morgan'
 import helmet from 'helmet'
 
+export interface ServerOptions {
+    port?: number
+}
+
 export class Server {
     public readonly app = express()
+    private readonly port: number
 
-    constructor() {}
+    constructor(options: ServerOptions) {
+        this.port = options.port || 5005
+    }
 
-    async start(port: number) {
+    public async start() {
         this.app.use(helmet())
         this.app.use(cors({ origin: '*' }))
         this.app.use(json())
@@ -22,8 +29,8 @@ export class Server {
             })
         })
 
-        this.app.listen(port, () => {
-            console.log(`server Started at http://localhost:${port}`)
+        this.app.listen(this.port, () => {
+            console.log(`server Started at http://localhost:${this.port}`)
         })
     }
 }
