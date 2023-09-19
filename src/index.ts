@@ -1,4 +1,5 @@
 import { GlobalConfiguration } from './config'
+import { GlobalRouter } from './presentation/Routes'
 import { Server, ServerOptions } from './presentation/server'
 
 async function startApplication() {
@@ -6,6 +7,7 @@ async function startApplication() {
 
     const options: ServerOptions = {
         port: globalConfig.serverPort,
+        router: GlobalRouter.routes,
     }
 
     const server = new Server(options)
